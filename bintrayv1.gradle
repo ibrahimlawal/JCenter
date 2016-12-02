@@ -3,13 +3,13 @@ apply plugin: 'com.jfrog.bintray'
 version = libraryVersion
 
 task sourcesJar(type: Jar) {
-    from sourceSets.main.allJava
+    from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
 
 task javadoc(type: Javadoc) {
-    source = sourceSets.main.allJava
-    classpath = configurations.compile
+    source = android.sourceSets.main.java.srcDirs
+    classpath += configurations.compile
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
